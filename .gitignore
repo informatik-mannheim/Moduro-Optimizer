@@ -1,3 +1,4 @@
-.idea/*
+.idea
 target
+*.iml
 hs-ma-moduro-automation-cc3d-simulation-manager.iml
