@@ -112,7 +112,6 @@ public class ParameterDumpBaseComponent {
 
                 // Please see ParameterDumpExecConfig class about details related to the multiple keys problem
                 // We ignore this problem at this moment and we will always use the first key set in the annotation
-                // todo: check if this is a legit way
                 String targetKey = availableParameterKeys[0];
                 sb.append(targetKey)
                         .append(": ")

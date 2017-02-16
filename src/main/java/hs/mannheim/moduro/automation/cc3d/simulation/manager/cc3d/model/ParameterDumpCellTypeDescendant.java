@@ -19,7 +19,6 @@ public class ParameterDumpCellTypeDescendant {
     }
 
     public ParameterDumpCellTypeDescendant(String parseString) {
-        // todo: validate parseString
         this.probability = getProbabilityValue(parseString);
         Map<String, Integer> cellIds = getCellIds(parseString);
         this.cellId1 = cellIds.get(SimManagerConfig.CELL_ID_1);

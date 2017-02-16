@@ -76,13 +76,13 @@ public class InternalFitnessFunctionTest {
         /**
          * was will ich tun?
          * Als result bekommt man einen Skalar mit einem ParameterDump und einer dazugehörigen Fitness.
-         * Diese Fitness liegt in einem Intervall zwischen [0,1]. Diese Fitness setzt sich zusammen aus dem Mittelwert
+         * Diese Fitness liegt in einem Intervall zwischen [0,1]. Diese Fitness setzt sich zusammen aus dem Median
          * aller Fitness-Werte zum Zeitpunkt [t], also zu jedem mcs. Eine Simulation dauert 720 Tage und jeden Tag werden 2 mcs
          * vollzogen.
          *
-         * Das Ergebnis der internen Fitness ist also der Mittelwert der gesamten Simulation. Dazu werden alle mcs addiert und durch die Anzahl
-         * der vorhandenen Einträge (Anzahl mcs) dividiert. Das Ergebnis liefert immer einen korrekten Mittelwert.
-         * Deshalb sollte jeder Plot-Eintrag lediglich auf die Anzahl der mcs überprüft werden, um auf das Beenden einer Simulation zu prüfen.
+         * Das Ergebnis der internen Fitness ist also der Median einer Simulation. Dazu werden alle mcs addiert und durch die Anzahl
+         * der vorhandenen Einträge (Anzahl mcs) dividiert. Das Ergebnis liefert immer einen korrekten Median.
+         * Desahlb sollte jeder Plot-Eintrag lediglich auf die Anzahl der mcs überprüft werden, um auf das Beenden einer Simulation zu prüfen.
          * Sollte dies nicht der Fall sein, ist die Simulation abgebrochen und ein negativer return-Wert wird zurückgegeben.
          */
         final Integer MINIMUM_COUNT = 10;
@@ -134,7 +134,6 @@ public class InternalFitnessFunctionTest {
     }
 
 
-    // TODO: IMPL
     private double fitnessFunct(Collection<Double> valueCollection) {
         Double internalFitnessResult = null;
 
@@ -160,9 +159,7 @@ public class InternalFitnessFunctionTest {
 
         ArrayList<Double> valuesArrayList = Lists.newArrayList(valueCollection);
         Double unsortedMedianValue = valuesArrayList.get(valuesArrayList.size() / 2);
-        // todo: liste sortieren, unsorted median wegwerfen - Sortieren in eigener methode -> eher nicht
 
-        // todo: was tun, wenn mehr als 720 Werte in der Liste stehen?
         Double OPTIMUM_STEPS_FACTOR = 1.0;
         Double OPTIMUM_STEPS_SIZE = 720.0; // Fachlich sind 720 Einträge in der FitnessPlot.dat das Maximum
         Double initCountFitnessValue = valueCollection.size() / OPTIMUM_STEPS_SIZE;

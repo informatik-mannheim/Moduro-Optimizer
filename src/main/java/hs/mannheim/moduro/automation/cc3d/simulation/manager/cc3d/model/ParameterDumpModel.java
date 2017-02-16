@@ -3,10 +3,6 @@ package hs.mannheim.moduro.automation.cc3d.simulation.manager.cc3d.model;
 
 import java.util.Map;
 
-// todo: Hier liegt aktuelle in Problem bei den zu verarbeitenden Parameterdump files vor.
-// todo: Die Parameter für das Model unterscheiden sich aktuell in den vorliegenden Beispiel-Dateien.
-// todo: Es ist nicht ersichtlich mit welcher Version welche ParameterDump erzeugt wurde, darum kann man nicht
-// todo: sagen, ob es eine aktuelle Version gibt oder ob beide Versionen supported werden müssen
 
 public class ParameterDumpModel extends ParameterDumpBaseComponent implements ParameterDumpEntry {
 
@@ -134,7 +130,6 @@ public class ParameterDumpModel extends ParameterDumpBaseComponent implements Pa
         this.umbrellaNecrosisProb = umbrellaNecrosisProb;
     }
 
-    // todo: impl
     @Override
     public Boolean isComplete() {
         return null;

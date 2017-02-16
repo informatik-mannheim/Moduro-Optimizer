@@ -4,7 +4,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 /***
- * This class contains static configurations
+ * This class contains statis configurations
  */
 public class SimManagerConfig {
 
@@ -39,23 +39,37 @@ public class SimManagerConfig {
     public static final Boolean OPTIONS_PARAMETER_MODURO_SIMULATIONS_PYTHON_SCRIPT_PATH_HAS_ARG = true;
     public static final Boolean OPTIONS_PARAMETER_MODURO_SIMULATIONS_PYTHON_SCRIPT_PATH_REQUIRED = true;
 
-    public static final String OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_SHORT = "a";
-    public static final String OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_FULL = "optimization-algorithm";
-    public static final String OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_DESCRIPTION = "Name of the algorithm which should be used for optimization.";
-    public static final Boolean OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_HAS_ARG = true;
-    public static final Boolean OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_REQUIRED = true;
-
     public static final String FILENAMES_FITNESSPLOT = "FitnessPlot.dat";
 
 
-    // todo klären ob 1000 steps für die LatticeData in Ordnung sind.
+    // This parameter will be used in CompuCell and passed in RunScript.bat
+    /***
+     * allows to specify how often
+     vtk files are stored to the disk. Those files tend to be quite large for bigger simulations so
+     storing them every single MCS (default setting) slows down simulation considerably and
+     also uses a lot of disk space
+     */
     public static final Integer COMPUCELL_RUNSCRIPT_PARAM_FREQUENCY = 1000;
 
     public static final String CELL_ID_1 = "CellId1";
     public static final String CELL_ID_2 = "CellId2";
 
+    // Regex, um die Descendants werte zu einem Celltype in der ParameterDump zu parsen
     public static final String CELLTYPE_DECENDANTS_REGEX = "(\\[[0-9]\\.[0-9][0-9]?\\,?\\s?\\[?\\d?\\,?\\s?\\d?\\]?\\]?)";
 
+    // CMAES related config
+    // There are also required "OptimizationData"-Values which are not stored here but in CompuCell3DParameterOptimizer.class
+    public static Integer CMAES_OPTIMIZER_MAX_ITERATIONS = 1999999999;
+    public static Double CMAES_OPTIMIZER_STOP_AT_FITNESS = 1.00;
+    public static Boolean CMAES_OPTIMIZER_IS_ACTIVE_CMA = true;
+    public static Integer CMAES_OPTIMIZER_DIAGONAL_ONLY_ITERATION_COUNT = 1; // todo: value ok?  // diagonalOnly - Number of initial iterations, where the covariance matrix remains diagonal.
+    public static Integer CMAES_OPTIMIZER_CHECK_FEASABLE_COUNT = 1; // todo: value ok? // // checkFeasableCount - Determines how often new random objective variables are  generated in case they are out of bounds.
+
+    public static Double CMAES_SIMPLE_POINT_CHECKER_RELATIVE_THRESHOLD = -1.0; // todo: werte ok?
+    public static Double CMAES_SIMPLE_POINT_CHECKER_ABSOLUTE_THRESHOLD = -2.0; // todo: werte ok?
+    public static Integer CMAES_MAXIMUM_FITNESS_PLOT_LINES = 1440;
+    public static Integer CMAES_MAX_EVALUATION_CALLS = 10;
+    public static Integer CMAES_POPULATION_SIZE = 6;
 
     public static Options getCliOptions() {
         Options options = new Options();
@@ -87,13 +101,6 @@ public class SimManagerConfig {
                 OPTIONS_PARAMETER_MODURO_SIMULATIONS_PYTHON_SCRIPT_PATH_DESCRIPTION);
         runScriptPathOption.setRequired(SimManagerConfig.OPTIONS_PARAMETER_MODURO_SIMULATIONS_PYTHON_SCRIPT_PATH_REQUIRED);
         options.addOption(moduroSimulationPythonDirOption);
-
-        Option moduroTargetOptimizationAlgorithmOption = new Option(OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_SHORT,
-                OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_FULL,
-                OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_HAS_ARG,
-                OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_DESCRIPTION);
-        runScriptPathOption.setRequired(OPTIONS_PARAMETER_MODURO_SIMULATIONS_OPTIMIZATION_ALGORITHM_REQUIRED);
-        options.addOption(moduroTargetOptimizationAlgorithmOption);
 
         return options;
     }

@@ -50,7 +50,6 @@ public class ParameterDumpWriterImpl implements ParameterDumpWriter {
 
     private String getParameterDumpString(ParameterDump parameterDump) {
         StringBuilder sb = new StringBuilder();
-        // todo: append startTime
         sb.append("startTime: ").append(NEWLINE);
         sb.append(NEWLINE);
         sb.append(parameterDump.getParameterDumpExecConfig().toString());
