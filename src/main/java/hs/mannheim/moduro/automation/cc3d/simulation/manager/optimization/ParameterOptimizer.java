@@ -1,5 +1,7 @@
 package hs.mannheim.moduro.automation.cc3d.simulation.manager.optimization;
 
+import hs.mannheim.moduro.automation.cc3d.simulation.manager.cc3d.model.ParameterDump;
+
 import java.io.File;
 
 /***
@@ -17,6 +19,8 @@ import java.io.File;
  */
 public interface ParameterOptimizer {
 
-
-    Double getInternalFitnessOfLatestCC3DSimulation(File cc3DWorkingDir);
+    void run(ParameterDump p, File compucell3DRunScriptBatchFile,
+             File compucell3DWorkingDirFile,
+             File moduroSimAutomationWorkingDirFile,
+             File moduroPythonProjectDirFile);
 }

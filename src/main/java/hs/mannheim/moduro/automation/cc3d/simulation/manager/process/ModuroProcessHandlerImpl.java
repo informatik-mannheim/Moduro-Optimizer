@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Date;
 
-// todo: ausbauen / umbauen
 public class ModuroProcessHandlerImpl implements ModuroProcessHandler {
     private File compucell3DRunScriptBatchFile;
     private File compucell3DWorkingDirFile;
@@ -22,12 +21,14 @@ public class ModuroProcessHandlerImpl implements ModuroProcessHandler {
     private Cc3dProcessManager cc3dProcessManager;
 
     /***
-     * This class manages the whole automation process workflow.
+     * This class manages the Compucell3D Setup workflow.
      *
-     * - It converts JSON files or ParameterDumps into entities - It optimizes the values of the converted enities - It
-     * generates JSON files which are later loaded by the moduro python scripts - It generated cc3d files to run a
-     * simulation - It runs the generated project which compucell3d - When the simulation is done for any reason
-     * (success, error, abort) - it will repeat this process
+     * - It converts JSON files or ParameterDumps into entities - It
+     * generates JSON files which are later loaded by the moduro python scripts
+     * - It generated cc3d files to run a
+     * simulation
+     *
+     * - It runs the generated project which compucell3d
      *
      * @param compucell3DRunScriptBatchFile Path to the runScript.bat file of Compucell3D
      * @param compucell3DWorkingDirFile Path to the Compucell3DWorking directory
@@ -45,6 +46,19 @@ public class ModuroProcessHandlerImpl implements ModuroProcessHandler {
     }
 
     @Override
+    /**
+     * This will run a Simulation based on a given ParameterDump
+     *
+     * Steps:
+     * 1) Run enviroment Setup: Create new folder for the current simulation
+     * 2) Export ParameterDump as Json (Which will be loaded py the Moduro-Python project)
+     * 3) Export all required files to the new folder for the current simulation
+     * 4) Run the cc3D File
+     * 5) The Pythonproject will look for the json file in the same dir as the cc3d file which is currently executed
+     *
+     * To your information: There is a bug which won't let you access the current folder of the executed cc3d-File, if you
+     * open the file in GUI-Mode. Use runscript.bat instead.
+     */
     public void runSimulation(ParameterDump parameterDump) {
         try {
             if (parameterDump == null) {

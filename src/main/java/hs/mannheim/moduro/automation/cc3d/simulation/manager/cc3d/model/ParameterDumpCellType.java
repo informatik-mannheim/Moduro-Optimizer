@@ -102,7 +102,6 @@ public class ParameterDumpCellType extends ParameterDumpBaseComponent implements
         return sb.toString();
     }
 
-    // todo: impl
     @Override
     public Boolean isComplete() {
         throw new NotImplementedException();
