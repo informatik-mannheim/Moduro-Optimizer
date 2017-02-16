@@ -33,6 +33,21 @@ import java.util.*;
 
 public class CmaesTest {
 
+   /*
+   final String cc3DWorkingDirPathString = "C:" + File.separator + "Users" + File.separator + "Station"
+           + File.separator + "CC3DWorkspace";
+   final String cc3dRunScriptPathString = "C:\\Program Files (x86)\\CompuCell3D\\runScript.bat";
+   final String moduroSimAutomationWorkingDirString = "C:\\Users\\Station\\Documents\\moduro-automation-working-dir";
+   final String runJsonCc3D = "C:\\Users\\Station\\PycharmProjects\\Moduro-CC3D\\Simulation\\RunJsonCc3D.py";
+   */
+   final String cc3DWorkingDirPathString = "c:\\Users\\Markus\\CC3DOptWorkspace\\";
+   final String cc3dRunScriptPathString =
+           "c:\\Program Files\\CompuCell3D\\runScript.bat";
+   final String moduroSimAutomationWorkingDirString =
+           cc3DWorkingDirPathString;
+   final String runJsonCc3D =
+           cc3DWorkingDirPathString;
+
    private Double modelAdhEnergy;
    private Double modelAdhFactor;
 
@@ -127,11 +142,6 @@ public class CmaesTest {
             "cellUmbrellaSurFit",
             "cellUmbrellaVolFit" };
 
-      final String cc3DWorkingDirPathString = "C:" + File.separator + "Users" + File.separator + "Station"
-            + File.separator + "CC3DWorkspace";
-      final String cc3dRunScriptPathString = "C:\\Program Files (x86)\\CompuCell3D\\runScript.bat";
-      final String moduroSimAutomationWorkingDirString = "C:\\Users\\Station\\Documents\\moduro-automation-working-dir";
-
       // CMAES OPTIMIZER SETUP
       RandomGenerator randomGen = RandomGeneratorFactory.createRandomGenerator(new Random());
       Boolean generateStatistics = false;
@@ -167,8 +177,7 @@ public class CmaesTest {
       File compucell3DRunScriptBatchFile = new File(cc3dRunScriptPathString);
       File compucell3DWorkingDirFile = new File(cc3DWorkingDirPathString);
       File moduroSimAutomationWorkingDirFile = new File(moduroSimAutomationWorkingDirString);
-      File moduroPythonProjectDirFile = new File(
-            "C:\\Users\\Station\\PycharmProjects\\Moduro-CC3D\\Simulation\\RunJsonCc3D.py");
+      File moduroPythonProjectDirFile = new File(runJsonCc3D);
 
       final ModuroProcessHandler moduroProcessHandlerImpl = new ModuroProcessHandlerImpl(
             compucell3DRunScriptBatchFile, compucell3DWorkingDirFile, moduroSimAutomationWorkingDirFile,
