@@ -19,6 +19,11 @@ import java.nio.file.Files;
 import java.util.*;
 
 
+// TODO GUM documentation!
+
+/**
+ * Reads a ParameterDump.dat file.
+ */
 public class ParameterDumpReaderImpl implements ParameterDumpReader {
     private final String KEY_VALUE_SEPERATOR_CHAR = ":";
     private final String PARAMETER_DUMP_PARSED_MASTER_KEY_KEY = "masterKey";
@@ -29,6 +34,11 @@ public class ParameterDumpReaderImpl implements ParameterDumpReader {
     private final int CONDITION_NUMBER_OF_EXCEC_CONFIG = 1;
     private final int CONDITION_NUMBER_OF_MODEL_CONFIG = 1;
 
+    /**
+     *
+     * @param parameterDumpFile The ParameterDump.dat file.
+     * @return
+     */
     @Override
     public ParameterDump parseParamDump(File parameterDumpFile) {
         try {
@@ -191,7 +201,7 @@ public class ParameterDumpReaderImpl implements ParameterDumpReader {
      * @param parameterDumpLines
      * @return collection of indices which represents the beginning of a data block of the parameterDumpBlock
      */
-    public Collection<Integer> getParameterDumpParentEntriesIndices(String[] parameterDumpLines) {
+    private Collection<Integer> getParameterDumpParentEntriesIndices(String[] parameterDumpLines) {
         Collection<Integer> mainKeyIndices = new ArrayList<Integer>();
         for (int i = 0; i < parameterDumpLines.length; i++) {
 
@@ -218,7 +228,7 @@ public class ParameterDumpReaderImpl implements ParameterDumpReader {
      * @param parameterDumpLines
      * @return Collect
      */
-    public Collection<String> getParameterDumpEntriesForBlock(Integer indexOfMainKey, String[] parameterDumpLines) {
+    private Collection<String> getParameterDumpEntriesForBlock(Integer indexOfMainKey, String[] parameterDumpLines) {
 
         if (indexOfMainKey == null || indexOfMainKey < 0 || indexOfMainKey > parameterDumpLines.length - 1) {
             System.err.println("could not extract parameters from entrie block, since given index is not valid: [" +
@@ -247,7 +257,7 @@ public class ParameterDumpReaderImpl implements ParameterDumpReader {
      * @return a map which contains the values left of the splitting char ":" as the key and the value on the right side
      *         of the : as the value for the key
      */
-    public Map<String, String> convertParameterDumpBlockToHashmap(Collection<String> parameterDumpValueBlock) {
+    private Map<String, String> convertParameterDumpBlockToHashmap(Collection<String> parameterDumpValueBlock) {
         Map<String, String> keyValuePairResults = new HashMap<String, String>();
 
         System.out.println("parameter dump block contains " + parameterDumpValueBlock.size() + " elements.");

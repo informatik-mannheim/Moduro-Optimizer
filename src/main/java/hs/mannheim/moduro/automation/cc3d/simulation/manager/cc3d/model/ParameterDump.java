@@ -3,6 +3,9 @@ package hs.mannheim.moduro.automation.cc3d.simulation.manager.cc3d.model;
 
 import java.util.Collection;
 
+/**
+ * Represents a ParameterDump.dat file.
+ */
 public class ParameterDump {
 
     private String startTime;
